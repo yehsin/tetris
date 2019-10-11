@@ -25,7 +25,7 @@ class block{
         {
             case 84:
                 switch(direction){
-                    case 49:
+                    case 49://T1
                         B[0].col=p+1;
                         B[1].col=p+0;
                         B[2].col=p+1;
@@ -36,7 +36,7 @@ class block{
                         B[2].row=B[0].row+1;
                         B[3].row=B[0].row+1;
                         break;
-                    case 50:
+                    case 50://T2
                         B[0].col=p+1;
                         B[1].col=p+0;
                         B[2].col=p+1;
@@ -47,7 +47,7 @@ class block{
                         B[2].row=B[0].row+1;
                         B[3].row=B[0].row+2;
                         break;
-                    case 51:
+                    case 51://T3
                         B[0].col=p+0;
                         B[1].col=p+1;
                         B[2].col=p+2;
@@ -58,7 +58,7 @@ class block{
                         B[2].row=B[0].row;
                         B[3].row=B[0].row+1;
                         break;
-                    case 52:
+                    case 52://T4
                         B[0].col=p+0;
                         B[1].col=p+0;
                         B[2].col=p+1;
@@ -74,7 +74,7 @@ class block{
                 
             case 76:
                 switch(direction){
-                    case 49:
+                    case 49://L1
                         B[0].col=p+0;
                         B[1].col=p+1;
                         B[2].col=p+0;
@@ -85,7 +85,7 @@ class block{
                         B[2].row=B[0].row+1;
                         B[3].row=B[0].row+2;
                         break;
-                    case 50:
+                    case 50://L2
                         B[0].col=p+0;
                         B[1].col=p+0;
                         B[2].col=p+1;
@@ -96,7 +96,7 @@ class block{
                         B[2].row=B[0].row+1;
                         B[3].row=B[0].row+1;
                         break;
-                    case 51:
+                    case 51://L3
                         B[0].col=p+1;
                         B[1].col=p+1;
                         B[2].col=p+0;
@@ -107,7 +107,7 @@ class block{
                         B[2].row=B[0].row+2;
                         B[3].row=B[0].row+2;
                         break;
-                    case 52:
+                    case 52://L4
                         B[0].col=p+0;
                         B[1].col=p+1;
                         B[2].col=p+2;
@@ -122,7 +122,7 @@ class block{
                 break;
             case 74:
                 switch(direction){
-                    case 49:
+                    case 49://J1
                         B[0].col=p+0;
                         B[1].col=p+1;
                         B[2].col=p+1;
@@ -133,7 +133,7 @@ class block{
                         B[2].row=B[0].row+1;
                         B[3].row=B[0].row+2;
                         break;
-                    case 50:
+                    case 50://J2
                         B[0].col=p+0;
                         B[1].col=p+1;
                         B[2].col=p+2;
@@ -144,7 +144,7 @@ class block{
                         B[2].row=B[0].row+0;
                         B[3].row=B[0].row+1;
                         break;
-                    case 51:
+                    case 51://J3
                         B[0].col=p+0;
                         B[1].col=p+0;
                         B[2].col=p+0;
@@ -155,7 +155,7 @@ class block{
                         B[2].row=B[0].row+2;
                         B[3].row=B[0].row+2;
                         break;
-                    case 52:
+                    case 52://J4
                         B[0].col=p+2;
                         B[1].col=p+0;
                         B[2].col=p+1;
@@ -171,7 +171,7 @@ class block{
                 
             case 83:
                 switch(direction){
-                    case 49:
+                    case 49://S1
                         B[0].col=p+0;
                         B[1].col=p+1;
                         B[2].col=p+1;
@@ -182,7 +182,7 @@ class block{
                         B[2].row=B[0].row+1;
                         B[3].row=B[0].row+1;
                         break;
-                    case 50:
+                    case 50://S2
                         B[0].col=p+1;
                         B[1].col=p+0;
                         B[2].col=p+1;
@@ -198,7 +198,7 @@ class block{
                 break;
             case 90:
                 switch(direction){
-                    case 49:
+                    case 49://Z1
                         B[0].col=p+1;
                         B[1].col=p+2;
                         B[2].col=p+0;
@@ -209,7 +209,7 @@ class block{
                         B[2].row=B[0].row+1;
                         B[3].row=B[0].row+1;
                         break;
-                    case 50:
+                    case 50://Z2
                         B[0].col=p+0;
                         B[1].col=p+0;
                         B[2].col=p+1;
@@ -224,7 +224,7 @@ class block{
                 break;
             case 73:
                 switch(direction){
-                    case 49:
+                    case 49://I1
                         B[0].col=p+0;
                         B[1].col=p+0;
                         B[2].col=p+0;
@@ -235,7 +235,7 @@ class block{
                         B[2].row=B[0].row+2;
                         B[3].row=B[0].row+3;
                         break;
-                    case 50:
+                    case 50://I2
                         B[0].col=p+0;
                         B[1].col=p+1;
                         B[2].col=p+2;
@@ -250,7 +250,7 @@ class block{
                 }
                 break;
                 
-            case 79:
+            case 79://O
                 B[0].col=p+0;
                 B[1].col=p+1;
                 B[2].col=p+0;
@@ -276,7 +276,6 @@ class block{
 
 class board{
     private:
-    friend block;
     int length,wength;
     int count=0;
     bool broke=0;
@@ -383,14 +382,14 @@ class board{
     }
    
     void print(){
-        ofstream ofile("Tetris.output.txt",ios::out);
+        ofstream ofile("Tetris.output",ios::out);
         for(int j=length-1;j>=0;j--){
             for(int i=0;i<wength;i++){
                 ofile<<this->col[i][j];
-                cout<<this->col[i][j]<<"\t";
+                //cout<<this->col[i][j]<<"\t";
             }
             ofile<<endl;
-            cout<<endl;
+            //cout<<endl;
         }
         ofile.close();
     }
@@ -410,7 +409,7 @@ int str_to_int(const char *s){ //change number size
 
 int main(){
     char input1[3],input2[3];
-    ifstream ifile("Tetris.data.txt",ios::in);
+    ifstream ifile("Tetris.data",ios::in);
     ifile.getline(input1,3,' ');
     ifile.getline(input2,3,'\n');
     leng=str_to_int(input1);
