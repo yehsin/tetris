@@ -285,12 +285,12 @@ class board{
     int *flag; //mamorize the highest block in it's colume
     int *full;//mamorize which colume have total block
     board(int length=0,int wength=0):length(length),wength(wength){
-        full = new int[wength];
-        flag = new int[wength];
-        row = new int[length];
-        col = new int*[wength];
+        full = new int[wength+1];
+        flag = new int[wength+1];
+        row = new int[length+1];
+        col = new int*[wength+1];
         for(int i=0;i<wength;i++){
-            col[i] = new int[length]{0};
+            col[i] = new int[length+1]{0};
             flag[i]=-1;
             full[i]=0;
         }
@@ -318,49 +318,58 @@ class board{
                 distance=tmp_distance;
             }
         }
+        cout<<col[0][0];
+        cout<<"distance="<<distance<<endl;
         //calculate each block's distance between highest 1 in itself column
 
         for(int i=0;i<4;i++){
             if(pre_status!=c->getrow(i)&&broke==1){
                 break;
             }
-            int need_to_move=c->getrow(i)-distance;//memorize where this block should be 
-            int block_col=c->getcol(i);
-            col[block_col][need_to_move]=1;
-            full[block_col]++;
-            row[need_to_move]++;
-            flag[block_col]=need_to_move;
-            if(row[need_to_move]==wength){ //when erasing
-                for(int j=0;j<wength;j++){
-                    this->erase(need_to_move,col[j]);
-
-                    /* */
-                    col[j][flag[j]]=0; 
-                    if(need_to_move!=flag[j]){
-                        col[j][need_to_move]=1;
-                    }
-                    /*When we erase block, we mean that the highest block move to the block which is erased*/
-                    /*And if we erase block is the highest we do nothing*/ 
-
-                    full[j]--;
-                    int tmp_row=flag[j];
-                    while(col[j][flag[j]]==0 && tmp_row>=0){
-                        flag[j]--;
-                        tmp_row--;
-                    } //to get the highest block position                 
-                }
-                distance++;/*because we erase a block, others blocks which are in the same column whose distance
-                must be increased.*/
-                for(int o=need_to_move;o<length-1;o++){
-                    row[o]=row[o+1]; //change each row information to it's below row.
-                }
-                row[length-1]=0;//Anyway, top will be 0.
-            }
             else{
-                if(full[block_col]>length){ //爆掉
-                    broke=1;
+                cout<<"k";
+                int need_to_move=c->getrow(i)-distance;//memorize where this block should be 
+                int block_col=c->getcol(i);
+                col[block_col][need_to_move]=1;
+                full[block_col]++;
+                row[need_to_move]++;
+                flag[block_col]=need_to_move;
+                if(row[need_to_move]==wength){ //when erasing
+                    for(int j=0;j<wength;j++){
+                        this->erase(need_to_move,col[j]);
+                        for(int r=need_to_move;r<length-1;r++){ // 上一行移到下一行
+                            col[j][r]=col[j][r+1];
+                        }
+                        col[j][length-1]=0;
+                        full[j]--;
+                    }  
+
+                    for(int o=need_to_move;o<length-1;o++){
+                        row[o]=row[o+1]; //change each row information to it's below row.
+                    }
+                    row[length-1]=0;//Anyway, top will be 0. 
+                        
+                    for(int j=0;j<wength;j++){
+                        //col[j][flag[j]]=0;
+                        int tmp_row=flag[j];
+                        while(col[j][flag[j]]==0 && tmp_row>=0){
+                            flag[j]--;
+                            tmp_row--;
+                        } //to get the highest block position                 
+                    }
+                    distance++;/*because we erase a block, others blocks which are in the same column whose distance
+                    must be increased.*/
+                    
                 }
+                else{
+                    if(flag[block_col]>=length){ //爆掉
+                        cout<<"broke"<<endl;
+                        broke=1;
+                    }
+                }
+                cout<<full[2]<<endl;;
             }
+            
         }
         //get the shortest and move down
 
@@ -376,9 +385,19 @@ class board{
             return false;
         }
         else{
+            cout<<col[0][0];
             return true;
         }
 
+    }
+
+    void prints(){
+        for(int j=length-1;j>=0;j--){
+            for(int i=0;i<wength;i++){
+                cout<<this->col[i][j]<<"\t";
+            }
+            cout<<endl;
+        }
     }
    
     void print(){
@@ -428,10 +447,12 @@ int main(){
         map=map->add(a);
         delete a;
         if(map->is_broke()){
+            cout<<"Broke"<<endl;
             break;
         }
         
     }
+    map->prints();
     map->print();
     ifile.close();
     delete map;
