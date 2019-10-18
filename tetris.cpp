@@ -318,8 +318,6 @@ class board{
                 distance=tmp_distance;
             }
         }
-        cout<<col[0][0];
-        cout<<"distance="<<distance<<endl;
         //calculate each block's distance between highest 1 in itself column
 
         for(int i=0;i<4;i++){
@@ -327,7 +325,6 @@ class board{
                 break;
             }
             else{
-                cout<<"k";
                 int need_to_move=c->getrow(i)-distance;//memorize where this block should be 
                 int block_col=c->getcol(i);
                 col[block_col][need_to_move]=1;
@@ -342,7 +339,7 @@ class board{
                         }
                         col[j][length-1]=0;
                         full[j]--;
-                    }  
+                    }
 
                     for(int o=need_to_move;o<length-1;o++){
                         row[o]=row[o+1]; //change each row information to it's below row.
@@ -350,7 +347,6 @@ class board{
                     row[length-1]=0;//Anyway, top will be 0. 
                         
                     for(int j=0;j<wength;j++){
-                        //col[j][flag[j]]=0;
                         int tmp_row=flag[j];
                         while(col[j][flag[j]]==0 && tmp_row>=0){
                             flag[j]--;
@@ -363,11 +359,9 @@ class board{
                 }
                 else{
                     if(flag[block_col]>=length){ //爆掉
-                        cout<<"broke"<<endl;
                         broke=1;
                     }
                 }
-                cout<<full[2]<<endl;;
             }
             
         }
@@ -385,19 +379,9 @@ class board{
             return false;
         }
         else{
-            cout<<col[0][0];
             return true;
         }
 
-    }
-
-    void prints(){
-        for(int j=length-1;j>=0;j--){
-            for(int i=0;i<wength;i++){
-                cout<<this->col[i][j]<<"\t";
-            }
-            cout<<endl;
-        }
     }
    
     void print(){
@@ -447,12 +431,10 @@ int main(){
         map=map->add(a);
         delete a;
         if(map->is_broke()){
-            cout<<"Broke"<<endl;
             break;
         }
         
     }
-    map->prints();
     map->print();
     ifile.close();
     delete map;
